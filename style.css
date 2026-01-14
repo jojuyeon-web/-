@@ -6,14 +6,14 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0f1460 100%);
     min-height: 100vh;
     color: #fff;
 }
 
 /* Header & Navigation */
 header {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     padding: 1rem 2rem;
     position: fixed;
     width: 100%;
@@ -33,7 +33,7 @@ nav {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    background: linear-gradient(45deg, #e94560, #ff6b6b);
+    background: linear-gradient(45deg, #00d4ff, #7b2cbf);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -53,7 +53,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #e94560;
+    color: #00d4ff;
 }
 
 /* Hero Section */
@@ -63,23 +63,25 @@ nav {
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #e94560, #ff6b6b, #ffd93d);
+    background: linear-gradient(45deg, #00d4ff, #7b2cbf, #ff006e);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
 }
 
 .hero p {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #a0a0a0;
+    margin-bottom: 2rem;
 }
 
 /* Game Section */
 .game-section {
     padding: 2rem;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -92,100 +94,58 @@ nav {
     flex-wrap: wrap;
 }
 
-.score, .timer {
+.score, .lives, .level {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.8rem 1.5rem;
     border-radius: 10px;
     font-size: 1.2rem;
+    border: 1px solid rgba(0, 212, 255, 0.3);
 }
 
 .btn {
-    background: linear-gradient(45deg, #e94560, #ff6b6b);
+    background: linear-gradient(45deg, #00d4ff, #7b2cbf);
     border: none;
-    padding: 0.8rem 2rem;
+    padding: 1rem 2.5rem;
     border-radius: 25px;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: bold;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 25px rgba(0, 212, 255, 0.5);
 }
 
-/* Game Board */
-.game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto;
-    perspective: 1000px;
-}
-
-.card {
-    aspect-ratio: 1;
-    position: relative;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
-}
-
-.card.flipped {
-    transform: rotateY(180deg);
-}
-
-.card.matched {
-    animation: matchPulse 0.5s ease-out;
-}
-
-@keyframes matchPulse {
-    0% { transform: rotateY(180deg) scale(1); }
-    50% { transform: rotateY(180deg) scale(1.1); }
-    100% { transform: rotateY(180deg) scale(1); }
-}
-
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 15px;
+/* Game Container */
+.game-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 2.5rem;
+    margin: 0 auto;
 }
 
-.card-front {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    transform: rotateY(180deg);
+#game-canvas {
+    background: linear-gradient(180deg, #000011 0%, #000033 50%, #000022 100%);
+    border: 3px solid #00d4ff;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
-.card-back {
-    background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
-    border: 3px solid rgba(255, 255, 255, 0.2);
-}
-
-.card-back::before {
-    content: "?";
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Win Message */
-.win-message {
+/* Game Over */
+.game-over {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 20, 0.95);
     padding: 3rem;
     border-radius: 20px;
     text-align: center;
     z-index: 1001;
+    border: 2px solid #ff006e;
+    box-shadow: 0 0 50px rgba(255, 0, 110, 0.5);
     animation: popIn 0.5s ease-out;
 }
 
@@ -194,18 +154,20 @@ nav {
     100% { transform: translate(-50%, -50%) scale(1); }
 }
 
-.win-message h2 {
-    font-size: 2rem;
-    color: #ffd93d;
+.game-over h2 {
+    font-size: 2.5rem;
+    color: #ff006e;
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
 }
 
-.win-message p {
+.game-over p {
     margin: 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: #ccc;
 }
 
-.win-message .btn {
+.game-over .btn {
     margin-top: 1.5rem;
 }
 
@@ -224,7 +186,8 @@ nav {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: #ffd93d;
+    color: #00d4ff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
 }
 
 .rules-container {
@@ -234,38 +197,42 @@ nav {
 }
 
 .rule-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
     transition: transform 0.3s;
+    border: 1px solid rgba(0, 212, 255, 0.2);
 }
 
 .rule-card:hover {
     transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
 }
 
 .rule-icon {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(45deg, #e94560, #ff6b6b);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 212, 255, 0.1);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
     margin: 0 auto 1rem;
+    border: 2px solid rgba(0, 212, 255, 0.3);
 }
 
 .rule-card p {
     color: #a0a0a0;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-size: 1rem;
 }
 
 /* Footer */
 footer {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
     text-align: center;
     margin-top: 4rem;
@@ -275,27 +242,48 @@ footer p {
     color: #666;
 }
 
+/* Stars Animation */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
 /* Responsive */
+@media (max-width: 850px) {
+    #game-canvas {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+    }
+}
+
 @media (max-width: 600px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
-    .game-board {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        max-width: 320px;
-    }
-
-    .card-face {
-        font-size: 1.8rem;
+    .hero p {
+        font-size: 1.1rem;
     }
 
     .game-info {
         gap: 1rem;
     }
 
+    .score, .lives, .level {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
     .nav-links {
         gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
     }
 }
