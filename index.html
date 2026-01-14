@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 매칭 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Card Game</div>
+            <ul class="nav-links">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#game">게임</a></li>
+                <li><a href="#rules">규칙</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>카드 매칭 게임</h1>
+            <p>같은 카드를 찾아 짝을 맞춰보세요!</p>
+        </section>
+
+        <section id="game" class="game-section">
+            <div class="game-info">
+                <div class="score">
+                    <span>시도 횟수: </span>
+                    <span id="moves">0</span>
+                </div>
+                <div class="timer">
+                    <span>시간: </span>
+                    <span id="time">00:00</span>
+                </div>
+                <button id="restart-btn" class="btn">다시 시작</button>
+            </div>
+
+            <div class="game-board" id="game-board">
+                <!-- 카드들이 여기에 생성됩니다 -->
+            </div>
+
+            <div id="win-message" class="win-message hidden">
+                <h2>축하합니다!</h2>
+                <p>모든 카드를 찾았습니다!</p>
+                <p>시도 횟수: <span id="final-moves"></span></p>
+                <p>완료 시간: <span id="final-time"></span></p>
+                <button id="play-again-btn" class="btn">다시 플레이</button>
+            </div>
+        </section>
+
+        <section id="rules" class="rules-section">
+            <h2>게임 규칙</h2>
+            <div class="rules-container">
+                <div class="rule-card">
+                    <div class="rule-icon">1</div>
+                    <p>카드를 클릭하여 뒤집으세요</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-icon">2</div>
+                    <p>두 장의 카드를 연속으로 뒤집으세요</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-icon">3</div>
+                    <p>같은 그림이면 카드가 사라집니다</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-icon">4</div>
+                    <p>모든 짝을 찾으면 게임 완료!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Card Matching Game. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

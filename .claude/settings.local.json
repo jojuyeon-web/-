@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"C:\\\\Users\\\\user\\\\Documents\\\\newhome\\\\index.html\")",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
